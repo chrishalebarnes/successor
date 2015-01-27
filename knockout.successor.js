@@ -12,7 +12,7 @@
  * Example without any of the defaults:
  *    <span id="status-label" class="label"
  *          data-bind="successor: {
- *	 		  success: 'Saved successfully.', failure: 'Save failed.',
+ *            success: 'Saved successfully.', failure: 'Save failed.',
  *            successClass: 'success'       , failureClass: 'alert',
  *            inDuration: 300, delay: 300   , outDuration: 1000,
  *            animateIn: 'slideToggle', animateOut: 'fadeOut'
@@ -26,7 +26,7 @@
  */
 (function(factory) {
 	// Do the module dance.
-    if (typeof define === "function" && define.amd) {
+	if (typeof define === "function" && define.amd) {
         // AMD anonymous module
         define(["knockout", "jquery"], factory);
     } else {
@@ -39,37 +39,35 @@
 			$(element).css('display', 'none');
 		},
 		update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-			var element = $(element);
-
-		    var animateElement = function(element) {
+            var animateElement = function(element) {
 				element[values.animateIn || 'slideToggle'](values.inDuration || 300, function() {
 					setTimeout(function(){
 						element[values.animateOut || 'fadeOut'](values.delay || 300);
 					}, values.outDuration || 1000);
 				});	
-	        };
+            };
+            
+            var reset = function() {
+                viewModel.success(false);
+                viewModel.failure(false);
+            };
+            
+            var values = valueAccessor();
+            element = $(element);	//need to refresh the element here
 
-	        var reset = function() {
-	        	viewModel.success(false);
-	        	viewModel.failure(false);
-	        };
-
-	        var values = valueAccessor();
-	        var element = $(element);
-
-	        if(viewModel.success() && !viewModel.failure()) {	        	
-	        	element.addClass(values.successClass || 'success');
-	        	element.removeClass(values.failureClass || 'alert');
-	        	element.text(values.success ||'Saved succesfully.');
-	        	animateElement(element);
+			if(viewModel.success() && !viewModel.failure()) {	        	
+				element.addClass(values.successClass || 'success');
+				element.removeClass(values.failureClass || 'alert');
+				element.text(values.success ||'Saved succesfully.');
+				animateElement(element);
 				reset();	
-	        } else if(viewModel.failure() && !viewModel.success()) {
-	        	element.addClass(values.failureClass || 'alert');
-	        	element.removeClass(values.successClass || 'success');
-	        	element.text(values.failure || 'Save failed.');
+			} else if(viewModel.failure() && !viewModel.success()) {
+				element.addClass(values.failureClass || 'alert');
+				element.removeClass(values.successClass || 'success');
+				element.text(values.failure || 'Save failed.');
 				animateElement(element);
 				reset();	        	
-	        }
-	    }	
+			}
+		}
 	};	
 });
