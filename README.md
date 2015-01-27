@@ -1,7 +1,7 @@
 Successor
 ================
 
-![Example gif. A save button is clicked and a message appears and disappears.](https://raw.githubusercontent.com/chrishalebarnes/successor/master/successor.gif?raw=true)
+![Example gif. A save button is clicked and a message appears and disappears.](https://raw.githubusercontent.com/chrishalebarnes/successor/master/example.gif?raw=true)
 
 Successor is a [knockout](http://knockoutjs.com/) binding handler that displays the result of some action in a nearby html element. Just set ```this.success(true)``` in the view model and the element will animate in and fade away.
 
