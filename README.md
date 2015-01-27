@@ -7,20 +7,20 @@ Successor is a [knockout](http://knockoutjs.com/) binding handler that displays 
 
 ## Getting Started
 If using [require.js](http://requirejs.org/), you can require successor like this:
-```
+```JavaScript
 define(['/path/to/knockout', '/path/to/knockout.successor'], function(ko) {
     //Get or define the view model and bind it
 });
 ```
 
 Given HTML like this:
-```
+```HTML
 <span data-bind="successor: {}"></span>
 <button data-bind="click: save">Save</button>
 ```
 
 And a view model like this:
-```
+```JavaScript
 var ViewModel = function () {
     var self = this;
     this.success = ko.observable(false);
@@ -35,7 +35,7 @@ ko.applyBindings(new ViewModel());
 ```
 
 A message in the span will appear and fade out. Here are all the options:
-```
+```HTML
 <span data-bind="successor: {
                    success: 'Saved successfully.', failure: 'Save failed.',
                    successClass: 'success'       , failureClass: 'alert',
